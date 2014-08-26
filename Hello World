@@ -10,6 +10,6 @@ private async void Button_Click(object sender, RoutedEventArgs e)
 //Shfaqja e textit duke perdorur nje button dhe nje textbox
 
 private void Button_Click(object sender,RoutedEventArgs e)
-       {
-            myTextbox.Text = "hello world";
-       }
+        {
+            myTextbox.Text = "Hello world";
+        }
