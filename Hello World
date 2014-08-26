@@ -1,0 +1,15 @@
+//Shfaqja e textit me ane te nje "MessageDialog"
+
+private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var m = new MessageDialog("Hello World");
+            await m.ShowAsync();
+        }
+
+
+//Shfaqja e textit duke perdorur nje button dhe nje textbox
+
+private void Button_Click(object sender,RoutedEventArgs e)
+       {
+            myTextbox.Text = "hello world";
+       }
