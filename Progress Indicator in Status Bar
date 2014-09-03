@@ -1,0 +1,6 @@
+//Progress Indicator in Status Bar
+
+Windows.UI.ViewManagement.StatusBar.GetForCurrentView().ShowAsync();
+var progInd = Windows.UI.ViewManagement.StatusBar.GetForCurrentView().ProgressIndicator;
+progInd.Text = "Fetching...";
+prog.ShowAsync();
