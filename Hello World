@@ -2,8 +2,9 @@
 
 private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var m = new MessageDialog("Hello World");
-            await m.ShowAsync();
+            var dialog = new MessageDialog("Hello World");
+            dialog.Title="Button Clicked Handler";
+            await dialog.ShowAsync();
         }
 
 
