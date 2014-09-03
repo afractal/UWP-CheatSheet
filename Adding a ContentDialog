@@ -1,0 +1,7 @@
+//Project ->"Add New Item" ->Select ContentDialog
+//Design your ContentDialog the same way as a user control
+//In code, show your dialog like this:
+
+AboutMessage myDialog=new AboutMessage();
+
+ContentDialogResult result =await myDialog.ShowAsync();
