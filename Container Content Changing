@@ -1,0 +1,17 @@
+// Fire when item is realized 
+
+<ListView ItemTemplate="{StaticResource SampleDataTemplate}"ContainerContentChanging="IncrementalUpdateHandler">
+
+// Items can be rendered in phases
+
+private void IncrementalUpdateHandler(ListViewBase sender,ContainerContentChangingEventArgs args)
+{
+    args.Handled= true;
+    if(argsPhase!=0)
+         throw new Exception("we will always be in phase 0");
+    else
+      {
+         // show a placehjolder shape
+         args.RegisterUpdateCallBack(ShowText);
+      }
+}
