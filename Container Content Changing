@@ -15,3 +15,17 @@ private void IncrementalUpdateHandler(ListViewBase sender,ContainerContentChangi
          args.RegisterUpdateCallBack(ShowText);
       }
 }
+
+// Later phases will be skipped if too much time is needed
+
+private void ShowText(ListViewBase sender, ContainerContentEventArgs args)
+{
+    args.Handled=true;
+    if(args.Phase!=1)
+         throw new Exception("we should always be in phase 1");
+    else
+      {
+         // show text from the template
+         args.RegisterUpdateCallback(ShowImage);
+      }
+}
