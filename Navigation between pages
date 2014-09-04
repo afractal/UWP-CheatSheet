@@ -1,0 +1,10 @@
+// Navigations between pages by using a ListView item event
+
+private void itemListView_ItemClick(object sender, ItemClickEventArgs e)
+{
+      // Navigate to the appropriate destination page, configuring the new page
+      // by passing required information as a navigation paramenter
+      
+      var itemId= ((MYListViewItem)e.ClickedItem).UniqueId;
+      Frame.Navigate(typeof(MyDetailPage), itemId);
+}
