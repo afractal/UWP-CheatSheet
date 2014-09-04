@@ -1,0 +1,27 @@
+// This Must be coded in app.cs
+
+public App()
+{
+    this.InitializeComponent();
+    this.Suspending += OnSuspending;
+    // Initializing the method in the constructor
+    HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+}
+
+...
+...
+
+private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+{
+    Frame frame = Window.Current.Content as Frame;
+    if(frame==null)
+        {
+            return;
+        }
+
+    if(frame.CanGoBack)
+        {
+            frame.GoBack();
+            e.Handled = True;
+        }
+}
