@@ -1,0 +1,19 @@
+//EntraceThemeTransition can be applied to content when the page
+//containing the content is first loaded and that part of the content is rendered
+//Thus the first appearance of content can offer different visual feedback than a change to content does
+
+
+<Grid Background="{ThemeResource ApplicationPAgeBackgroundThemeBrush}">
+  <Grid.ChildrenTransitions>
+    <TransitionCollection>
+      <EntraceThemeTransition/>
+    <TransitionCollection>
+  <Grid.ChildrenTransitions>
+</Grid>
+
+<Grid.RowDefinitions>
+  <RowDefinition Height="140"/>
+  <RowDefinition Height="*"/>
+<Grid.RowDefinitions>
+....
+<Grid/>
