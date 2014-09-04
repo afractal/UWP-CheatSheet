@@ -1,3 +1,5 @@
+// Do it only if you are interested in performance not on designing
+
 // Fire when item is realized 
 
 <ListView ItemTemplate="{StaticResource SampleDataTemplate}"ContainerContentChanging="IncrementalUpdateHandler">
@@ -7,11 +9,11 @@
 private void IncrementalUpdateHandler(ListViewBase sender,ContainerContentChangingEventArgs args)
 {
     args.Handled= true;
-    if(argsPhase!=0)
+    if(args.Phase!=0)
          throw new Exception("we will always be in phase 0");
     else
       {
-         // show a placehjolder shape
+         // show a placeholder shape
          args.RegisterUpdateCallBack(ShowText);
       }
 }
@@ -29,3 +31,5 @@ private void ShowText(ListViewBase sender, ContainerContentEventArgs args)
          args.RegisterUpdateCallback(ShowImage);
       }
 }
+.....
+// Repeat another phase if you want to
