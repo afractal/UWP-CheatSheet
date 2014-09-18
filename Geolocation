@@ -1,0 +1,43 @@
+//--> How to get the current location
+
+Geolocator geolocator = new Geolocator();
+geolocator.DesiredAccuracyInMeters = 50;
+try
+{
+  Geoposition geoposition = await geolocator.GetGeopositionAsync(
+      maximumAge: TimeSpan.FromMinutes(5),
+      timeout: TimeSpan.FromSeconds(10) );
+  
+  LatitudeTextBlock.Text = geoposition.Coordinate.Latitude.ToString("0.00");
+  LongitudeTextBlock.Text = geopositon.Coordinate.Longitude.ToString("0.00");
+}
+catch(UnauthorizedAccesException)
+{
+  // the app does not have the right capability or the location master switch is off
+  StatusTextBlock.Text = "location is disabled in phone settings.";
+}
+
+
+//--> How to track location
+
+private void TrackLocation_Click(object sender, RoutedEventArgs e)
+{
+  if(!tracking)
+    {
+      geolocator = new Geolocator();
+      geolocator.DiredAccuracy = PositionAccuracy.High;
+      geolocator.MovementThreshold = 100; // The units are meters.
+
+      geolocator,StatusChanged += geolocator_StatusChanged;
+      geolocator.PositionChanged += geolocator_PositionChanged;
+      tracking = true;     
+    }
+  else
+    {
+geolocator.PositionChanged -=geolocator_PositionChanged;
+geolocator.StatusChanged -= geolocator_StatusChanged;
+geolocator = null;
+tracking false;
+    }
+}
+
