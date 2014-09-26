@@ -14,6 +14,8 @@ IReadOnlyList<PasswordCredential> RetrieveCredential(string resource)
 
 //---> Web Authentication Broker (WAB)
 
+// Many apps connect to popular online services
+// Authentication is usually required
 // Easy authentication against online Service Providers
 // e.g Facebook, Twitter, etc.
 
@@ -28,7 +30,7 @@ void Authenticate()
 
 }
 // App suspended, may be terminated
-                  |
+                ||
 // App activated when WAB returns
 
 {
