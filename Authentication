@@ -1,4 +1,8 @@
 //---> Credential Locker sample
+
+// Use Credential Locker to securely store credentials and 
+// roam across the user's trusted devices
+
 void SaveCredential(string username, string password)
 {
   PasswordVault vault= new PasswordVault();
@@ -12,6 +16,7 @@ IReadOnlyList<PasswordCredential> RetrieveCredential(string resource)
   return vault.FindAllByResource(resource);
 }
 
+
 //---> Web Authentication Broker (WAB)
 
 // Many apps connect to popular online services
@@ -21,6 +26,7 @@ IReadOnlyList<PasswordCredential> RetrieveCredential(string resource)
 
 // Launching WebAuthenticationBroker
 // Usage Differs On Windows and Windows Phone
+
 
 //---> Initiate authentication using WAB
 
