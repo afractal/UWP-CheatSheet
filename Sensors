@@ -1,6 +1,7 @@
 // There are a lot of sensors: Accelerometer, Compass, Inclinometer, Gyrometer, Device Orientation, Light Sensor
 
 //--------------------->Gyrometer<-------------------
+
 //--> Determining Sensor Availability
 
 // Determine whether we have a gyro on the phone
@@ -78,6 +79,44 @@ if(reading != null)
 // activate the sensor.
 
 
+//--------------------->Compass<-------------------
+
+using Windows.Devices.Sensors; 
+
+private void OnGetDataButtonClick(object sender, RoutedEventArgs e)        
+{            
+  var compass = Compass.GetDefault();            
+  if (compass == null)
+  { 
+    this.DefaultViewModel["CompassData"] =
+    new    
+     {
+       MagneticNorth = "Compass not found",
+       TrueNorth= "Compass not found",
+       Accuracy = "Compass not found"                
+     }; 
+  }
+  else
+  {   var reading = compass.GetCurrentReading();
+      compass.ReadingChanged += OnCompassReadingChanged;
+       SetCompassReading(reading);
+  } 
+}
 
 
+private void SetCompassReading(CompassReading reading)
+{
+  this.DefaultViewModel["CompassData"] =
+  new
+  {
+    MagneticNorth = reading.HeadingMagneticNorth,
+    TrueNorth = reading.HeadingTrueNorth,
+    Accuracy = reading.HeadingAccuracy
+  };
+}
 
+
+ private void OnCompassReadingChanged(Compass sender, CompassReadingChangedEventArgs args)
+ {
+   SetCompassReading(args.Reading);
+ }
