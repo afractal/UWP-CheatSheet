@@ -1,0 +1,32 @@
+//--> Adding a AppBar
+
+<Page.BottomAppBar>   
+    <CommandBar x:Name="myCommandBar">               
+        <AppBarButton x:Name="pinAppBtn" Label="Pin" Icon="Pin">                
+        </AppBarButton>               
+    </CommandBar>   
+</Page.BottomAppBar>  
+
+//---> There is also a very cool feature of the Command Bar, you can enable the flyouts for the Buttons in the Command Bar.
+
+// When you click on the Pin button a MenuFlyout will then appear.
+<Page.BottomAppBar>   
+    <CommandBar x:Name="myCommandBar">               
+        <AppBarButton x:Name="pinAppBtn" Label="Pin" Icon="Pin">                 
+        <AppBarButton x:Name="pinAppBtn" Label="Pin" Icon="Pin">   
+            <AppBarButton.Flyout>   
+                <MenuFlyout>   
+                    <MenuFlyoutItem x:Name="pinMenuBtn" Text="Pin to Start"/>   
+                </MenuFlyout>   
+            </AppBarButton.Flyout>   
+        </AppBarButton>                           
+    </CommandBar>   
+</Page.BottomAppBar>  
+
+
+//---> Hiding the command bar
+
+// Suppose you want that initially when the page is loaded the App Bar that is showing by default the App buttons won't be there or is in a hidden state.
+// For this you just need to set the ClosedDisplayMode property of the CommandBar to "Minimal":
+
+<CommandBar x:Name="myCommandBar" ClosedDisplayMode="Minimal" >  
