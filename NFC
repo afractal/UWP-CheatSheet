@@ -1,3 +1,4 @@
+// Near Field Communications
 // NFC provides a connection  between devices that are very close together (Within3-4 centimetres)
 // The data is tranferred at a rate of 106,212 or 424 Kbit/second
 // NFC operates at slower speeds than bluetooth(BT v2.1 is uo to 2.1Mbit/s) but consumes less power
