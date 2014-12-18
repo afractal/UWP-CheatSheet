@@ -29,6 +29,6 @@ private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
     if(frame.CanGoBack)
         {
             frame.GoBack();
-            e.Handled = True;
+            e.Handled = true;
         }
 }
