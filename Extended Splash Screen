@@ -11,10 +11,10 @@ public ExtendedSplash()
 {
   this.InitializeComponent();     
   //Call MainPage from ExtendedSplashScreen after some delay  
-  ExtendeSplashScreen(); 
+  ExtendedSplashScreen(); 
 } 
   
-private async void ExtendeSplashScreen()
+private async void ExtendedSplashScreen()
 {
   await Task.Delay(TimeSpan.FromSeconds(3));  
   // set your desired delay 
