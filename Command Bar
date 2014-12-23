@@ -19,7 +19,6 @@
 // When you click on the Pin button a MenuFlyout will then appear.
 <Page.BottomAppBar>   
     <CommandBar x:Name="myCommandBar">               
-        <AppBarButton x:Name="pinAppBtn" Label="Pin" Icon="Pin">                 
         <AppBarButton x:Name="pinAppBtn" Label="Pin" Icon="Pin">   
             <AppBarButton.Flyout>   
                 <MenuFlyout>   
