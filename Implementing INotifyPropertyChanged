@@ -47,40 +47,36 @@ public class ItemViewModel : INotifyPropertyChanged
 // class ends here  
 } 
 
+
 // Implementing the INotifyPropertyChanged (The Optimal Way)
 public class ItemViewModel: INotifyPropertyChanged
+{
+  public event PropertyChangedEventHandler PropertyChanged;
+  private string model;
+  private string manufacturer;
+  private string color;
+  private int year;
+
+  public string Model
+  {
+    get { return model; }
+    set { model = value; }
+  }
+  protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+  {
+    if (object.Equals(storage, value)) return false;
+    storage = value;
+    this.OnPropertyChanged(propertyName);
+    return true;
+  }
+  public void OnPropertyChanged(string propertyName)
+  {
+    var eventHandler = this.PropertyChanged;
+    if (eventHandler != null)
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private string model;
-        private string manufacturer;
-        private string color;
-        private int year;
-
-
-        public string Model
-        {
-            get { return model; }
-            set { model = value; }
-        }
-
-
-        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
-        {
-            if (object.Equals(storage, value)) return false;
-            storage = value;
-            this.OnPropertyChanged(propertyName);
-            return true;
-        }
-
-        public void OnPropertyChanged(string propertyName)
-        {
-            var eventHandler = this.PropertyChanged;
-            if (eventHandler != null)
-            {
-                eventHandler(this, new PropertyChangedEventArgs(propertyName) );
-            }
-        }
-        
-        
+      eventHandler(this, new PropertyChangedEventArgs(propertyName) );
     }
+  }
+  
+// class ends here  
+}
