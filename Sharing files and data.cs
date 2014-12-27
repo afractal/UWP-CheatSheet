@@ -121,5 +121,3 @@ void OnShareDataRequested(DataTransferManager sender, DataRequestedEventArgs arg
 // If you do not, the Share operation silently fails (no exception).
 // Description
 // Not used by the Share UI on Windows Phone (used by the Windows Share UI), but is available to the Share target.
-
-
