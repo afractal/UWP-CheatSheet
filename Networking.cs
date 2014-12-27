@@ -36,7 +36,7 @@ private void DownloadProgress(DownloadOperation download)
   if(download.Progress.TotalBytesToReceive >0)
      percent = download.Progress.BytesReceived * 100 / download.Progress.TotalBytesToReceive;
   if(download.Progress.HasRestarted)
-  { /* Download restarded /};
+  { /* Download restarded */};
   if(download.Progress.HasResponseChanged) // We're received new response headers from the server.
      Debug.WriteLine(" - Response updated; Header count:" + download.GetResponseInformation().Headers.Count);
 }
