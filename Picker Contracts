@@ -1,20 +1,25 @@
 //--> Picker Contracts-Pick a File
 
-// Create the picker object
-FilePicker openPicker = new FilePicker();
+private void myPickPhotoButton_ClickEventHandler(object sender, RoutedEventArgs e)
+{
+  // Create the picker object
+  FileOpenPicker openPicker = new FileOpenPicker();
+  openPicker.ViewMode = PickerViewMode.Thumbnail;
+  openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
 
-// Users expect to have a filtered view of their folders
-openPickers.FileTypeFilter.Add(".jpg");
-openPickers.FileTypeFilter.Add(".png");
+  // Users expect to have a filtered view of their folders
+  openPicker.FileTypeFilter.Add(".bmp");
+  openPicker.FileTypeFilter.Add(".jpg");
+  openPicker.FileTypeFilter.Add(".jpeg");
+  openPicker.FileTypeFilter.Add(".png");
 
-// Open the picker for the user to pick a file
-openPicker.ContinuationData["Operation"]= "SomeDataOrOther"
-openPicker.PickSingleFileAndContinue();
-
+  // Open the picker for the user to pick a file
+  openPicker.ContinuationData["Operation"]= "SomeDataOrOther"
+  openPicker.PickSingleFileAndContinue();
+}
 // App suspended, may be terminated
                  |
 App activated when file picked
-
 
 
 //--> Activation after File Picker
@@ -67,11 +72,10 @@ public async void ContinueFileOpenPicker(FileOpenContinuationEventArgs)
 }
 
 
-
 //--> Save a File
 
 // Create the picker object
-FileSavaPicker savePicker = new FileSavePicker();
+FileSavePicker savePicker = new FileSavePicker();
 
 // Dropdown of file types the user can save the file as
 savePicker.FileTypeChoices.Add("Plain Text",new List<string>(){ ".txt" });
