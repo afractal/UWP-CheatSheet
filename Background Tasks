@@ -34,17 +34,19 @@ public sealed class TheTask : IBackgroundTask
 } 
 
 
+// Execution = Trigger + [Condition]
+
 // Tasks run in response to triggers
-// Triggers : System Trigger,TimeTrigger,LocationTrigger, MaintanceTrigger, PushNotificationTrigger,
-// RfcommConnetionTrigger,DeviceChangeTrigger,BluetoothSignalStrengthTrigger,GattCharacteristicNotificationTrigger etc.
-
+// Triggers :
+/* SystemTrigger, TimeTrigger, LocationTrigger, MaintanceTrigger, PushNotificationTrigger,
+  RfcommConnetionTrigger, DeviceChangeTrigger, BluetoothSignalStrengthTrigger, GattCharacteristicNotificationTrigger,
+  SessionStart, ControlChannelTrigger(), ServicingComplete, SessionConnected, SessionDisconnected, SmsReceives,
+  TimeZoneChange, UserrAway/UserPresent, LockScreenApplicationAdded/Removed, InternetAvailable/InternetNotAvaible,
+  NetworkStateChange, NetworkNotificationChannelReset */
+  
 // You can also add an condition
-
 // Conditions:
-// User[Not]Avaible
-// Internet[Not]Available
-// FreeNetworkAvailable
-// BackgroundWorkCostNotHigh
+/* InternetAvailable, InternetNotAvailable, SessionConnected, SessionDisconnected, UserNotPresent, UserPresent */
 
 BackgroundTaskBuildr taskBuilder = new BackgroundBuilder();
 
@@ -110,4 +112,3 @@ if(taskRegistration != null)
 // Release the progress/completed event subcriptions
 registration.Progress -= registration_Progress;
 registration.Completed -= registration_Completed;
-
