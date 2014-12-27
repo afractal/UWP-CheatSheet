@@ -5,8 +5,6 @@ using Windows.UI.Xaml.Navigation;
 using SDKTemplate;
 using System;
 
-
-
 private async void CancelCommandButton_Click(object sender, RoutedEventArgs e)
 {
     // Create the message dialog and set its content
