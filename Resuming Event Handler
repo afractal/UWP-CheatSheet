@@ -15,15 +15,15 @@
 sealed partial class App:Application
 {
     public App()
-     {
-        this.InitialezeComponent();
-        this.Suspending += OnSuspending;
-        this.Resuming += OnResuming;
-     }
-
+    {
+       this.InitialezeComponent();
+       this.Suspending += OnSuspending;
+       this.Resuming += OnResuming;
+    }
 
     private void OnResuming(object sender,Object e)
-     {
-        // TODO: watever you need to do to resume your app
-     }
-
+    {
+       // TODO: watever you need to do to resume your app
+    }
+.....
+.....
