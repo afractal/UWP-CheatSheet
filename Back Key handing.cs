@@ -14,7 +14,6 @@ public App()
     // Initializing the method in the constructor
     HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 }
-
 ...
 ...
 
@@ -22,13 +21,13 @@ private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
 {
     Frame frame = Window.Current.Content as Frame;
     if(frame==null)
-        {
-            return;
-        }
+    {
+        return;
+    }
 
     if(frame.CanGoBack)
-        {
-            frame.GoBack();
-            e.Handled = true;
-        }
+    {
+        frame.GoBack();
+        e.Handled = true;
+    }
 }
