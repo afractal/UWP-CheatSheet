@@ -40,3 +40,21 @@ if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
 // async call on WinRT to get that state back. By making this call, one of the things we’re asking the SuspensionManager
 // to do is to attempt to load from disk any Frame navigation history that it has stored and to put it back onto the
 // right Frame via the SetNavigationState method on the Frame.
+
+//--> Or you can do the MainPage_Loaded evet handler in main page (same result)
+
+// On the contructor fire the loaded event
+public MainPage()
+{
+  this.InitializeComponent();
+  this.NavigationCacheMode = NavigationCacheMode.Required;  
+  Loaded += MainPage_Loaded;
+}
+
+async void MainPage_Loaded(object sender, RoutedEventArgs e)
+{
+  SuspensionManager.RegisterFrame(MyFrame, "AppFrame");
+  try{ await SuspensionManager.RestoreAsync(); }
+  catch(SuspensionManagerException){ /* error */}
+  MyFrame.Navigate(typeof(views.GrandParent) );
+}
