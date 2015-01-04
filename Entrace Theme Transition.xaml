@@ -3,7 +3,7 @@
 //Thus the first appearance of content can offer different visual feedback than a change to content does
 
 
-<Grid Background="{ThemeResource ApplicationPAgeBackgroundThemeBrush}">
+<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
   <Grid.ChildrenTransitions>
     <TransitionCollection>
       <EntraceThemeTransition/>
