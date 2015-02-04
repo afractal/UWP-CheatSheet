@@ -5,7 +5,7 @@ private void SendTileNotificatio()
   
   //you will need tolock at the template documentation to know how many text field a paricular template has
   // get the text attribute for this template and fill it in
-  var tileAttributes = tileXml.GetElementByTagName("Hello World"");
+  var tileAttributes = tileXml.GetElementByTagName("Hello World");
   
   // create the notificatiob from the XML
   var tileNotification = new TileNotification(tileXml);
