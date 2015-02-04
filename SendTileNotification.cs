@@ -13,3 +13,5 @@ private void SendTileNotificatio()
   // send the notification to the calling apps tile
   TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
 }
+
+// for more information write tile notification template on your favorite webbrowser
