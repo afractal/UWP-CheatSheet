@@ -108,7 +108,8 @@ namespace ContosoCookBook.Data
                 return;
 
             Uri dataUri = new Uri("ms-appx:///DataModel/SampleData.json");
-
+            
+            // perdoren StorageFile dhe FileIO classes sepse permbajne shume metoda async
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
             string jsonText = await FileIO.ReadTextAsync(file);
             JsonObject jsonObject = JsonObject.Parse(jsonText);
