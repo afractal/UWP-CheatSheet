@@ -5,7 +5,8 @@ namespace ContosoCookBook.Data
     /// </summary>
     public class SampleDataItem
     {
-        public SampleDataItem(String uniqueId, String title, String subtitle, String imagePath, String description, String content)
+        public SampleDataItem(String uniqueId, String title, String subtitle, String imagePath,
+                                                                    String description, String content)
         {
             this.UniqueId = uniqueId;
             this.Title = title;
