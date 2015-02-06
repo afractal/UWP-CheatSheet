@@ -1,3 +1,5 @@
+namespace ContosoCookBook.Data
+{
     /// <summary>
     /// Generic item data model.
     /// </summary>
@@ -93,7 +95,8 @@
         {
             await _sampleDataSource.GetSampleDataAsync();
             // Simple linear search is acceptable for small data sets
-            var matches = _sampleDataSource.Groups.SelectMany(group => group.Items).Where((item) => item.UniqueId.Equals(uniqueId));
+            var matches = _sampleDataSource.Groups.SelectMany(group => group.Items).Where((item) =>
+                                                                item.UniqueId.Equals(uniqueId));
             if (matches.Count() == 1) return matches.First();
             return null;
         }
@@ -133,3 +136,6 @@
             }
         }
     }
+
+// namespace ends here
+}
