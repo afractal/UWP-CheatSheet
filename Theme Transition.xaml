@@ -1,0 +1,84 @@
+//--> EntraceThemeTransition can be applied to content when the page
+//containing the content is first loaded and that part of the content is rendered
+//Thus the first appearance of content can offer different visual feedback than a change to content does
+
+
+<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+  <Grid.ChildrenTransitions>
+    <TransitionCollection>
+      <EntraceThemeTransition/>
+    <TransitionCollection>
+  <Grid.ChildrenTransitions>
+</Grid>
+
+<Grid.RowDefinitions>
+  <RowDefinition Height="140"/>
+  <RowDefinition Height="*"/>
+</Grid.RowDefinitions>
+....
+<Grid/>
+
+ 
+// Transition animations are used to render a control and are visible in the class diagram show in Figure 6-7.
+// If you want to apply one of these transitions,
+// you can simply add one them to the TransitionCollection of a control in the following way: 
+
+ <Button>  
+   <Button.Transitions>     
+     <TransitionCollection>      
+       <EntranceThemeTransition FromHorizontalOffset="-229"/> 
+     </TransitionCollection> 
+   </Button.Transitions> 
+ </Button> 
+
+
+//--> you can also use EdgeUIThemeTrasitions for any other contents on a page
+//contents comes from the top and drops slowly
+
+<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EdgeUIThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+</Grid>
+
+
+//--> PaneThemeTransition : Contents comes from the right and the speed drops slowly
+
+<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <PaneThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+</Grid>
+
+
+//->PopupThemeTransition uses a popup style animation
+
+<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <PopupThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+</Grid>
+
+//--> ReorderThemeTransition: the contents waits for a bit and jump to your face
+
+<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <ReorderThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+</Grid>
+
+// There are also the below transitions which require more thought
+
+//--> RepositionThemeTransition :uses an animation like PaneThemeTransition but it is more gently
+
+//--> ContentThemeTransition
+
+//--> AddDeleteThemeTransition
