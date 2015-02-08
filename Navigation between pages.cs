@@ -20,7 +20,13 @@ private void itemListView_ItemClick(object sender, ItemClickEventArgs e)
 // here we navigate to a new page called SecondPage by clicking the botton
 // for good visual effects make sure you use Page Transitions (everybody loves eye candy)
 
+
 private void Button_Click(object sender, RoutedEventArgs e)
 {
     Frame.Navigate(typeof(SecondPage) );
 }
+
+// Fram.Navigate() creates a new instance of a Page and loads it into the entire viewable area of the Frame.
+// Page has a frame property for easy navigation to it's container.
+// The Frame keeps track of its history of pages, and supports methods to traverse it.
+// It also suppots caching of Pages
