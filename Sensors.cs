@@ -17,7 +17,6 @@ else
 {
   MessageBox.Show("No gyrometer found");
 }
-
 // All the sensor classes have a GetDefault() method
 // This methos only returns a non-null value if the hardware is avaible on the device
 
@@ -55,7 +54,6 @@ private void _gyrometer_ReadingChanged(Gyrometer sender, GyrometerReadingChanged
     Z_Reading.Text = String.Format("{0,5:0.00}", reading.AngularVelocityZ);
   });
 }
-
 // Register the ReadingChanged event handler to obtain sensor readings
 // Must set the ReportInterval property first
 
@@ -77,6 +75,66 @@ if(reading != null)
 // The preferred altenative for an application that updates its user interface at a specific frame rate
 // Must still establish a desired ReportInterval before polling in order to
 // activate the sensor.
+
+
+//--------------------->Accelerometer<-------------------
+
+namespace ShakeFeatureTest
+{
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class MainPage : Page
+    {
+        public MainPage()
+        {
+            this.InitializeComponent();
+
+            this.NavigationCacheMode = NavigationCacheMode.Required;
+            SensorAvaibility();
+            Meth();
+        }
+        
+        protected override void OnNavigatedTo(NavigationEventArgs args){ }
+
+        private Accelerometer sensor;
+
+        public async void SensorAvaibility()
+        {
+            sensor = Accelerometer.GetDefault();
+            if (sensor != null)
+            {
+                sensor.ReportInterval = 100;
+                sensor.ReadingChanged += sensor_ReadingChanged;
+            }
+            else
+                await new MessageDialog("Accelerometer not found!").ShowAsync();
+        }
+
+        public void Meth()
+        {
+            uint reportInterval = 100;
+            if (sensor.MinimumReportInterval > reportInterval)
+            {
+                reportInterval = sensor.MinimumReportInterval;
+            }
+            sensor.ReportInterval = reportInterval;
+        }
+
+        async void sensor_ReadingChanged(Accelerometer sender, AccelerometerReadingChangedEventArgs args)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                AccelerometerReading reading = args.Reading;
+                corX.Text = String.Format("{0,5:0.00}", reading.AccelerationX);
+                corY.Text = String.Format("{0,5:0.00}", reading.AccelerationY);
+                corZ.Text = String.Format("{0,5:0.00}", reading.AccelerationZ);
+            });
+        }
+    }
+
+// namespace ends here
+}
 
 
 //--------------------->Compass<-------------------
