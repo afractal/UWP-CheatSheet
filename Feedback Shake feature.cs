@@ -11,6 +11,7 @@ namespace ThirdTest
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+            
             ShakeGesturesHelper.Instance.ShakeGesture += Instance_ShakeGesture;
             ShakeGesturesHelper.Instance.MinimumRequiredMovesForShake = 5;
             ShakeGesturesHelper.Instance.Active = true;
@@ -24,7 +25,7 @@ namespace ThirdTest
             });
         }
         
-        protected override void OnNavigatedTo(NavigationEventArgs e){ }
+        protected override void OnNavigatedTo(NavigationEventArgs e){  }
     }
 
 // namespace ends here
