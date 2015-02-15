@@ -46,7 +46,7 @@ _gyrometer.ReadingChanged += _gyrometer_ReadingChanged;
 
 private void _gyrometer_ReadingChanged(Gyrometer sender, GyrometerReadingChangedEventArgs args)
 {
-  Dispatcher.BeginInvoke(() =>
+  await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
   {
     GyrometerReading reading = args.Reading;
     X_Reading.Text = String.Format("{0,5:0.00}", reading.AngularVelocityX);
