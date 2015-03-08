@@ -51,33 +51,42 @@ public class ItemViewModel : INotifyPropertyChanged
 
 //--> Implementing the INotifyPropertyChanged (The Optimal Way)
 
-public class ItemViewModel: INotifyPropertyChanged
+public class ItemViewModel : BindableBase
 {
-  public event PropertyChangedEventHandler PropertyChanged;
-  private string model;
-  private string manufacturer;
-  private string color;
-  private int year;
+  public string model
+  //private string manufacturer;
+  //private string color;
+  //private int year;
 
   public string Model
   {
     get { return model; }
-    set { model = value; }
+    set 
+    {
+      this.SetProperty(ref Name, value) ;
+    }
   }
-  protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+  
+// class ends here  
+}
+
+class BindableBase : INotifyPropertyChanged
+{
+  public event PropertyChangedEventHandler PropertyChanged;
+
+  public void OnPropertyChanged([CallerMemberName]string propertyName = null)
+  {
+    var handler = PropertyChanged;
+    if (handler != null)
+      handler(this, new PropertyChangedEventArgs(propertyName) );
+  }
+
+  protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
   {
     if (object.Equals(storage, value)) return false;
     storage = value;
     this.OnPropertyChanged(propertyName);
     return true;
-  }
-  public void OnPropertyChanged(string propertyName)
-  {
-    var eventHandler = this.PropertyChanged;
-    if (eventHandler != null)
-    {
-      eventHandler(this, new PropertyChangedEventArgs(propertyName) );
-    }
   }
   
 // class ends here  
