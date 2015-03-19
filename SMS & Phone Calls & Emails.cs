@@ -54,7 +54,8 @@ MakePhoneCall("0000000000", "Senthil Kumar");
 private static async Task<StorageFile> GetTextFile()
 {
      var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-     var file = await localFolder.CreateFileAsync("mobileosgeek.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+     var file = await localFolder.CreateFileAsync("mobileosgeek.txt", 
+                                    Windows.Storage.CreationCollisionOption.ReplaceExisting);
      await Windows.Storage.FileIO.WriteTextAsync(file, "This is a MobileOSGeek File");
      return file;
 }
@@ -77,3 +78,30 @@ await EmailManager.ShowComposeNewEmailAsync(email);
 // Step 4 : This will display the Email Compose Dialog with the screen already filled with
 // the EmailMessage data that was passed to the ShowComposeNewEmailAsync method.
 // Clicking on the Send button in the application bar will send the email with the attachment .
+
+
+//--> Example
+// sending te content of file via email,  write it on github
+public sealed partial class MainPage : Page
+{
+    public MainPage()
+    {
+        this.InitializeComponent();
+        this.NavigationCacheMode = NavigationCacheMode.Required;
+    }
+
+    protected async override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        var folder = ApplicationData.Current.LocalFolder;
+        var subfolder = await folder.CreateFolderAsync("MyFolder", CreationCollisionOption.OpenIfExists);
+        var file = await subfolder.CreateFileAsync("MyFile.txt", CreationCollisionOption.ReplaceExisting);
+        await FileIO.WriteTextAsync(file, "lolz");
+        var content = await FileIO.ReadTextAsync(file);
+
+        EmailMessage email = new EmailMessage();
+        email.Subject = "File is Attached";
+        email.To.Add(new EmailRecipient("hermesxgjini@gmail.com") );
+        email.Attachments.Add(new EmailAttachment(file.Name, file) );
+        await EmailManager.ShowComposeNewEmailAsync(email);
+    }
+}
