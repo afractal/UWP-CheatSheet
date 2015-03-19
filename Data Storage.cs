@@ -91,3 +91,27 @@ if(roamingSettings.Values.ContainsKey("userName"))
 // This code queries the roaming settings by using the key name
 // The name will be reflected across multiple devices (including Windows 8.1 ones) 
 
+
+//--> Example
+// onNavigatedTo() method , write it on github
+namespace AppDataTest
+{
+  public sealed partial class MainPage : Page
+  {
+    public MainPage()
+    {
+      this.InitializeComponent();
+    }
+    protected async override void OnNavigatedTo(NavigationEventArgs e)
+    {
+      var folder = ApplicationData.Current.LocalFolder;
+      var subfolder = await folder.CreateFolderAsync("MyFolder", CreationCollisionOption.OpenIfExists);
+      var result = await subfolder.CreateFileAsync("MyFile.txt", CreationCollisionOption.ReplaceExisting);
+      await FileIO.WriteTextAsync(result, "lolz");
+      var content = await FileIO.ReadTextAsync(result);
+      myTextBlock.Text = content.ToString();
+    }
+  }
+
+// namespace ends here
+}
