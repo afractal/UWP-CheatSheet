@@ -48,3 +48,13 @@ private void CommandInvokedHandler(IUICommand command)
     rootPage.NotifyUser("The '" + command.Label + "' command has been selected.", 
         NotifyType.StatusMessage);
 }
+
+
+//--> Example
+var ok = new UICommand("ok", x=>{//ToDo});
+var cancel = new UICommand("cancel");
+
+var dialog = new MessageDialog("message", "title");
+dialog.Commands.Add(ok);
+dialog.Commands.Add(cancel);
+await dialog.ShowAsync();
