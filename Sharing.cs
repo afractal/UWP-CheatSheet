@@ -121,3 +121,57 @@ void OnShareDataRequested(DataTransferManager sender, DataRequestedEventArgs arg
 // If you do not, the Share operation silently fails (no exception).
 // Description
 // Not used by the Share UI on Windows Phone (used by the Windows Share UI), but is available to the Share target.
+
+
+//--> Share Contract in windows phone 8.1
+private void ShareButton_Click(object sender, RoutedEventArgs e)
+{
+	var manager = DataTransferManager.GetForCurrentView();
+	manager.DataRequested += DataTransferManager_DataRequested;
+	DataTransferManager.ShowShareUI();
+}
+
+// if you want to share a text
+private void DataTransferManager_DataRequested(DataTranferManager sender, DataRequestesEventArgs e)
+{
+	e.Request.Data.Properties.Title="Share Contract";
+	e.Request.Data.setText("Hello World");
+	// there are more methods like setText, look it up
+}
+
+// or if you want to share a BitmapImage
+private void shareButton_Click(object sender, RoutedEventArgs e)
+{
+  var manager = DataTransferManager.GetForCurrentView();
+  manager.DataRequested += manager_DataRequested;
+  DataTransferManager.ShowShareUI();
+}
+
+private async void uploadButton_Click(object sender, RoutedEventArgs e)
+{
+  FileOpenPicker picker = new FileOpenPicker();
+  picker.FileTypeFilter.Add(".jpg");
+  picker.FileTypeFilter.Add(".jpeg");
+  picker.FileTypeFilter.Add(".gif");
+
+  picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+  picker.ViewMode = PickerViewMode.Thumbnail;
+  StorageFile file = await picker.PickSingleFileAsync();
+  IRandomAccessStream filestream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+  BitmapImage bitmap = new BitmapImage();
+  await bitmap.SetSourceAsync(filestream);
+  rootImage.Source = bitmap;
+}
+
+private void manager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+{
+  args.Request.Data.Properties.Title = "Share Contracts!";
+  args.Request.Data.Properties.Description = "description";
+  
+  var result = rootImage.BaseUri;
+
+  if (args != null)
+    args.Request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(result  ));
+  else
+    new MessageDialog("Please Select a Picture!");
+}
