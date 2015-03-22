@@ -39,3 +39,28 @@ TileNotification myNewTile = new TileNotification(tileDoc);
 
 TileNotification myTileUpdater = TileUpdateManager.CreateTileUpdaterForApplication();
 myTileUpdater.Update(myNewTile);
+
+
+//--> if you wnat to update the tile using build-in templates
+
+// is is the method that changes the image shown in the tile of the application when the user
+// selectes a different item of the listview (ArtistsListView)
+// xaml code is shown below
+<ListView x:Name="ArtistsListView" Margin="25,0,0,0" HorizontalAlignment="Left" ItemsSource="{Binding Items
+                SelectionChanged="ArtistsListView_SelectionChanged" >
+....</ListView>
+
+private void ArtistsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    var selectedArtist = ArtistsListView.SelectedItem as ArtistItem;
+    XmlDocument tileXmlDoc = TileUpdateManager.GetTemplateContent(TileTemplateType.TileSquare150x150Image);
+
+    XmlNodeList xmlElementsList = tileXmlDoc.GetElementsByTagName("image");
+    XmlElement xmlElement = xmlElementsList.Item(0) as XmlElement;
+    xmlElement.SetAttribute("scr", selectedArtist.ArtworkPhoto);
+    xmlElement.SetAttribute("alt", selectedArtist.ArtistName);
+            
+    TileNotification notification= new TileNotification(tileXmlDoc);
+    TileUpdater updater = TileUpdateManager.CreateTileUpdaterForApplication();
+    updater.Update(notification);
+}
