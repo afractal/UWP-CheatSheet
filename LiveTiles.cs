@@ -46,9 +46,9 @@ myTileUpdater.Update(myNewTile);
 // is is the method that changes the image shown in the tile of the application when the user
 // selectes a different item of the listview (ArtistsListView)
 // xaml code is shown below
-<ListView x:Name="ArtistsListView" Margin="25,0,0,0" HorizontalAlignment="Left" ItemsSource="{Binding Items
-                SelectionChanged="ArtistsListView_SelectionChanged" >
-....</ListView>
+// <ListView x:Name="ArtistsListView" Margin="25,0,0,0" HorizontalAlignment="Left" ItemsSource="{Binding Items
+//                SelectionChanged="ArtistsListView_SelectionChanged" >
+// ....</ListView>
 
 private void ArtistsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 {
