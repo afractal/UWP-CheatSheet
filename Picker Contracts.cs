@@ -16,6 +16,8 @@ private void myPickPhotoButton_ClickEventHandler(object sender, RoutedEventArgs 
   // Open the picker for the user to pick a file
   openPicker.ContinuationData["Operation"]= "SomeDataOrOther"
   openPicker.PickSingleFileAndContinue();
+  
+  // in windows 10 this is deprecated use .PickSingleFileAsync();
 }
 // App suspended, may be terminated
                  |
