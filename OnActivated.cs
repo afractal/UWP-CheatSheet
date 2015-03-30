@@ -1,5 +1,5 @@
- protected override void OnActivated(IActivatedEventArgs args)
- {
+protected override void OnActivated(IActivatedEventArgs args)
+{
     switch (args.Kind)    
     {
         case ActivationKind.CachedFileUpdater:  
