@@ -70,7 +70,8 @@ public class ItemViewModel : BindableBase
 // class ends here  
 }
 
-class BindableBase : INotifyPropertyChanged
+// creating an abstract class called BindableBase is a good way to introduce MVVM pattern
+public abstract class BindableBase : INotifyPropertyChanged
 {
   public event PropertyChangedEventHandler PropertyChanged;
 
