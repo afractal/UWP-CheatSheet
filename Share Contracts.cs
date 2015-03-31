@@ -142,38 +142,52 @@ private void DataTransferManager_DataRequested(DataTranferManager sender, DataRe
 }
 
 // or if you want to share a BitmapImage
-private void shareButton_Click(object sender, RoutedEventArgs e)
+namespace ProjectAve
 {
-  var manager = DataTransferManager.GetForCurrentView();
-  manager.DataRequested += manager_DataRequested;
-  DataTransferManager.ShowShareUI();
-}
 
-private async void uploadButton_Click(object sender, RoutedEventArgs e)
-{
-  FileOpenPicker picker = new FileOpenPicker();
-  picker.FileTypeFilter.Add(".jpg");
-  picker.FileTypeFilter.Add(".jpeg");
-  picker.FileTypeFilter.Add(".gif");
+    public sealed partial class MainPage : Page
+    {
+        StorageFile file;
+        BitmapImage bitmap = new BitmapImage();
 
-  picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-  picker.ViewMode = PickerViewMode.Thumbnail;
-  StorageFile file = await picker.PickSingleFileAsync();
-  IRandomAccessStream filestream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
-  BitmapImage bitmap = new BitmapImage();
-  await bitmap.SetSourceAsync(filestream);
-  rootImage.Source = bitmap;
-}
+        public MainPage()
+        {
+            this.InitializeComponent();
+        }
 
-private void manager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
-{
-  args.Request.Data.Properties.Title = "Share Contracts!";
-  args.Request.Data.Properties.Description = "description";
-  
-  var result = rootImage.BaseUri;
+        private void shareButton_Click(object sender, RoutedEventArgs e)
+        {
+            var manager = DataTransferManager.GetForCurrentView();
+            manager.DataRequested += manager_DataRequested;
+            DataTransferManager.ShowShareUI();
+        }
 
-  if (args != null)
-    args.Request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(result  ));
-  else
-    new MessageDialog("Please Select a Picture!");
+        private void manager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            args.Request.Data.Properties.Title = "Share Contracts!";
+            args.Request.Data.Properties.Description = "description";
+
+            if (args != null)
+                args.Request.Data.SetBitmap(RandomAccessStreamReference.CreateFromFile(file));
+            else
+                args.Request.FailWithDisplayText("Select an image first !");
+        }
+
+        private async void uploadButton_Click(object sender, RoutedEventArgs e)
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".gif");
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+
+            file = await openPicker.PickSingleFileAsync();
+            IRandomAccessStream filestream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+            await bitmap.SetSourceAsync(filestream);
+            rootImage.Source = bitmap;
+        }
+    }
+
+// namespace ends here
 }
