@@ -108,12 +108,14 @@ protected override void OnNavigatedFrom(NavigationEventArgs e)
 // Handle DataRequested event and provide DataPackage
 void OnShareDataRequested(DataTransferManager sender, DataRequestedEventArgs args) 
 {
-  var request = args.Request; 
+	var deferral = args.Request.GetDeferral();
+   	var request = args.Request; 
 
-  request.Data.Properties.Title = "Share example";
-  //You MUST set a Title!
-  request.Data.Properties.Description = "This demonstrates how to share text to another app";
-  request.Data.SetText(TextToShare.Text.Trim()); 
+	 request.Data.Properties.Title = "Share example";
+   	//You MUST set a Title!
+  	request.Data.Properties.Description = "This demonstrates how to share text to another app";
+  	request.Data.SetText(TextToShare.Text.Trim()); 
+  	deferral.Complete();
 }
 
 // Title
