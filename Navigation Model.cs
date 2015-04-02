@@ -1,4 +1,4 @@
-//-->Back Key handing.cs
+//-->Back Key handing
 
 // This Must be coded in app.cs
 // Blank App does not include Back key handling but Hub App,Pivot App does
@@ -17,15 +17,11 @@ public App()
 }
 ...
 ...
-
 private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
 {
     Frame frame = Window.Current.Content as Frame;
-    if(frame==null)
-    {
-        return;
-    }
-
+    if(frame == null) return ;
+    
     if(frame.CanGoBack)
     {
         frame.GoBack();
@@ -34,7 +30,7 @@ private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
 }
 
 
-//--> Navigating Back.cs
+//--> Navigating Back using a button instead of the HardwareButtons BackPressed event
 
 // Application ca execute logic to navigate back to precending page
 // Navigating back by using a button click event
@@ -56,7 +52,7 @@ private void itemListView_ItemClick(object sender, ItemClickEventArgs e)
 {
     // Navigate to the appropriate destination page, configuring the new page
     // by passing required information as a navigation paramenter
-    var itemId= ((MyListViewItem)e.ClickedItem).UniqueId;
+    var itemId = ((MyListViewItem)e.ClickedItem).UniqueId;
     Frame.Navigate(typeof(MyDetailPage), itemId);
     if (!Frame.Navigate(typeof(ItemPage), itemId))
     {
@@ -67,7 +63,6 @@ private void itemListView_ItemClick(object sender, ItemClickEventArgs e)
 // the most generic version is by using it with an botton click event 
 // here we navigate to a new page called SecondPage by clicking the botton
 // for good visual effects make sure you use Page Transitions (everybody loves eye candy)
-
 
 private void Button_Click(object sender, RoutedEventArgs e)
 {
