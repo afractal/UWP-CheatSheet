@@ -81,3 +81,29 @@ protected override void OnNavigatedTo(NavigationEventArgs e)
 // Page has a frame property for easy navigation to it's container.
 // The Frame keeps track of its history of pages, and supports methods to traverse it.
 // It also suppots caching of Pages
+
+// you can also pass a class as an object 
+
+class NavigationContext
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+}
+// this is on MainPage.xaml.cs
+private void GoForwardButton_Click(object sender, RoutedEventArgs e)
+{
+    Frame.Navigate(typeof(SecondPage), new NavigationContext
+    {
+        Id = 7,
+        Name = "Hermes Gjini",
+        Description = "These are my Credentials"
+    });
+}
+// this is on SecondPage.xaml.cs
+protected override void OnNavigatedTo(NavigationEventArgs e)
+{
+    //myTextBlock.Text = e.Parameter as String;
+    var result = e.Parameter as NavigationContext;
+    this.DataContext = result;
+}
