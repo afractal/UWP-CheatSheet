@@ -69,6 +69,14 @@ private void Button_Click(object sender, RoutedEventArgs e)
     Frame.Navigate(typeof(SecondPage) );
 }
 
+// we can also send information to the second page 
+Frame.Navigate(typeof(SecondPage), "Hola from the Main Page!" );
+// you can retrieve the object from the OnNavigatedTo method of the second page by doing this
+protected override void OnNavigatedTo(NavigationEventArgs e)
+{
+    myTextBlock.Text = e.Parameter as String;
+}
+
 // Fram.Navigate() creates a new instance of a Page and loads it into the entire viewable area of the Frame.
 // Page has a frame property for easy navigation to it's container.
 // The Frame keeps track of its history of pages, and supports methods to traverse it.
