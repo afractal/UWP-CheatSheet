@@ -53,14 +53,13 @@ myTileUpdater.Update(myNewTile);
 private void ArtistsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 {
     var selectedArtist = ArtistsListView.SelectedItem as ArtistItem;
-    XmlDocument tileXmlDoc = TileUpdateManager.GetTemplateContent(TileTemplateType.TileSquare150x150Image);
+    var xmlDoc = TileUpdateManager.GetTemplateContent(TileTemplateType.TileSquare150x150Image);
 
-    XmlNodeList xmlElementsList = tileXmlDoc.GetElementsByTagName("image");
-    XmlElement xmlElement = xmlElementsList.Item(0) as XmlElement;
+    var xmlElement = xmlDoc.GetElementsByTagName("image")[0] as XmlElement;
+    
     xmlElement.SetAttribute("scr", selectedArtist.ArtworkPhoto);
+    // or use: xmlElement.SetAttribute("src", "ms-appx:///Assets/10-XAML-CatImageSmall.png");
     xmlElement.SetAttribute("alt", selectedArtist.ArtistName);
-            
-    TileNotification notification= new TileNotification(tileXmlDoc);
-    TileUpdater updater = TileUpdateManager.CreateTileUpdaterForApplication();
-    updater.Update(notification);
+    
+    TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(xmlDoc));
 }
