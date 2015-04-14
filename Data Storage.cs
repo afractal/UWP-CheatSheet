@@ -10,26 +10,24 @@ ms-appdata:///local/
 ms-appdata:///roaming/
 ms-appdata:///temp/
 // Example
-var file= await Windows.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/AppConfigSettings.xaml"));
+var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/AppConfigSettings.xaml"));
 
 //--> File access using Windows.Storage API via StorageFolder references
 
 // Installation Folder
 
-Windows.ApplicationModel.Package.Current.InstalledLocation
+ApplicationModel.Package.Current.InstalledLocation
 // App data folder
 
-Windows.Storage.ApplicationData.Current
-                                  .LocalFolder /
-                                  .RoamingFolder /
-                                  .TempFolder
+ApplicationData.Current
+                             .LocalFolder /
+                             .RoamingFolder /
+                             .TempFolder
 // Example
 
-var localFolder= Windows.Storage.ApplicationData.Current.LocalFolder;
+var localFolder = ApplicationData.Current.LocalFolder;
 
-Windows.Storage.StorageFile storageFile= awit localFolder.GetFileAsync("CaptainsLog.store");
-
-
+StorageFile storageFile = await localFolder.GetFileAsync("CaptainsLog.store");
 
 
 //--> Windows.Storage.ApplicationData
@@ -38,13 +36,13 @@ Windows.Storage.StorageFile storageFile= awit localFolder.GetFileAsync("Captains
 // store and the application settings containers:
 
 // For file storage
-Windows.Storage.StorageFolder roam= Windows.Storage.ApplicationData.Current.RoamingFolder;
-Windows.Storage.StorageFolder local=Windows.Storage.ApplicationData.Current.LocalFolder;
-Windows.Storage.StorageFolder temp=Windows.Storage.ApplicationData.Current.TemporaryFolder;
+StorageFolder roam = ApplicationData.Current.RoamingFolder;
+StorageFolder local = ApplicationData.Current.LocalFolder;
+StorageFolder temp = ApplicationData.Current.TemporaryFolder;
 
 // For settings
-Windows.Storage.ApplicationDataContainer localSettings =Windows.Storage.ApplicationData.Current.LocalSettings;
-Windows.Storage.ApplicationDataContainer roamingSettings =Windows.Storage.ApplicationData.Current.RoamingSettings;
+ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
 
 // The StorageFolder object represents a folder and is used to acces the folder and itss contents
 // The ApplicationDataContainer object represents a key-value pair settings dectionary
@@ -52,12 +50,12 @@ Windows.Storage.ApplicationDataContainer roamingSettings =Windows.Storage.Applic
 //--> Local Settings
 
 // Create a simple settings
-localSettings.Values["exampleSettings"]= "Hello Windows";
+localSettings.Values["exampleSettings"] = "Hello Windows";
 
 // Read data from a simple settings
-Object value= localSettings.Values["exampleSettings"];
+Object value = localSettings.Values["exampleSettings"];
 
-if(value==null)
+if(value == null)
 {
     // No data
 }
@@ -73,7 +71,7 @@ localSetting.Values.Remove("exampleSettings");
 
 private void name_TextChange(object sender, TextChangedEventArgs e)
 {
-    Windows.Storage.ApplicationDataContainer roamingSettings= Windows.Storage.ApplicationDAta.Current.RoamingSettings;
+    ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
     roamingSettings.Values["userName"]= name.Text;
 }
 
@@ -82,7 +80,7 @@ private void name_TextChange(object sender, TextChangedEventArgs e)
 
 //--> Reading the Roaming Settings
 
-Windows.Storage.ApplicationDataContainer roamingSettings= Windows.Storage.ApplicationData.Current.RoamingSettings;
+ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
 
 if(roamingSettings.Values.ContainsKey("userName"))
 {
