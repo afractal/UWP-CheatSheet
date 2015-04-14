@@ -29,6 +29,11 @@ private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
     }
 }
 
+//--> Check what the current platform is?
+if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+    Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed; 
+// still in developer preview
+
 
 //--> Navigating Back using a button instead of the HardwareButtons BackPressed event
 
