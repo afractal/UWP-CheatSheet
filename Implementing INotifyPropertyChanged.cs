@@ -41,7 +41,8 @@ public class ItemViewModel : INotifyPropertyChanged
   {      
     if (PropertyChanged != null)       
       {
-        PropertyChanged(this, new  ropertyChangedEventArgs(propertyName));  
+        PropertyChanged(this, new  PropertyChangedEventArgs(propertyName));  
+        // you can also use PropertyChanged?.(this, new PropertyChangedEventArgs);
       }
   }
   
