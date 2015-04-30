@@ -1,7 +1,7 @@
 //--> EntraceThemeTransition can be applied to content when the page
+
 //containing the content is first loaded and that part of the content is rendered
 //Thus the first appearance of content can offer different visual feedback than a change to content does
-
 
 <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
   <Grid.ChildrenTransitions>
@@ -82,3 +82,12 @@
 //--> ContentThemeTransition
 
 //--> AddDeleteThemeTransition
+
+
+// transitions for the listview
+ListView x:Name="NewsListView" ItemsSource="{Binding Items}" ItemContainerTransitions="{StaticResource lol}">
+        <TransitionCollection x:Key="lol">
+            <EntranceThemeTransition  FromHorizontalOffset="80" IsStaggeringEnabled="True"/>
+        </TransitionCollection>
+</ListView>        
+
