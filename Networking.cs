@@ -86,6 +86,13 @@ catch(Exception ex)
 // HttpClient 
 // If you want response codes, headers and other information, use GetAsync instead of GetStringAsync
 
+// if you use the Networking Api, write it on github
+// the most generic method for getting the json as a string from a website's uri
+var client = new HttpClient();
+var response = await client.GetAsync(new Uri("http://server"));
+response.EnsureSuccessStatusCode();
+var jsonString = await response.Content.ReadAsStringAsync();
+
 
 //---> Reading response headers
 
