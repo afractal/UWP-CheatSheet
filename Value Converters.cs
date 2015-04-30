@@ -2,15 +2,33 @@
 // and display it on a tooptip 
 // for the above example the result is an hexdecimal value wrapped as an String
 
+//--> BrushToStringConverter
 class BrushToStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        return value is Brush ? String.Format("{0}", ((SolidColorBrush)value).Color.ToString()) : String.Format("{0}", "lol");
+        return value is Brush ? 
+                String.Format("{0}", ((SolidColorBrush)value).Color.ToString()) :
+                String.Format("{0}", "lol");
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, string language)
     {
         throw new NotImplementedException();
+    }
+}
+
+
+//--> BooleanToVisibilityConverter
+class BooleanToVisibilityConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, string language)
+    {
+        return (value is bool && (bool)value) ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
+        return value is Visibility && (Visibility)value == Visibility.Visible;
     }
 }
