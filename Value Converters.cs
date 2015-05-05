@@ -1,3 +1,5 @@
+// the value converter is used to convert from a source(bool) to a target(Visibility) and vice versa
+
 // use this converter for example when converting a Fill property of an Rectangle 
 // and display it on a tooptip 
 // for the above example the result is an hexdecimal value wrapped as an String
