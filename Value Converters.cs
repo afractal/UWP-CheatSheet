@@ -5,7 +5,7 @@
 // for the above example the result is an hexdecimal value wrapped as an String
 
 //--> BrushToStringConverter
-class BrushToStringConverter : IValueConverter
+public sealed class BrushToStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
@@ -22,7 +22,7 @@ class BrushToStringConverter : IValueConverter
 
 
 //--> BooleanToVisibilityConverter
-class BooleanToVisibilityConverter : IValueConverter
+public sealed class BooleanToVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
