@@ -56,3 +56,42 @@ public sealed class TextToHtmlConverter : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+
+// Custom class implements the IValueConverter interface.
+// DateToStringConverter
+public class DateToStringConverter : IValueConverter
+{
+    // Define the Convert method to change a DateTime object to 
+    // a month string.
+    public object Convert(object value, Type targetType, 
+        object parameter, string language)
+    {
+        // value is the data from the source object.
+        DateTime thisdate = (DateTime)value;
+        int monthnum = thisdate.Month;
+        string month;
+        switch (monthnum)
+        {
+            case 1:
+                month = "January";
+                break;
+            case 2:
+                month = "February";
+                break;
+            default:
+                month = "Month not found";
+                break;
+        }
+        // Return the value to pass to the target.
+        return month;
+
+    }
+
+    // ConvertBack is not implemented for a OneWay binding.
+    public object ConvertBack(object value, Type targetType, 
+        object parameter, string language)
+    {
+        throw new NotImplementedException();
+    }
+}
