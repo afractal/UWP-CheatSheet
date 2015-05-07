@@ -26,3 +26,15 @@
    Text="{Binding Decription}"
    Pivot.SlideInAnimationGroup="2"/>
 ....
+
+
+<Page.Transitions>
+   <TransitionCollection>
+      <NavigationThemeTransition>
+         <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            <CommonNavigationTransitionInfoSlideNavigationTransitionInfo/>
+         </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+      </NavigationThemeTransition>
+   </TransitionCollection>
+</Page.Transitions>
+
