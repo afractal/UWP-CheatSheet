@@ -10,3 +10,7 @@ Windows.UI.ViewManagement.ApplicationViewSwitcher.TryStandaloneAsync
 // opt-in to the new activation policy
 
 ApplicationViewSwitcher.DisableSystemViewActivationPolicy();
+
+// ViewSwitcher on activated event args
+
+ViewSwitcher.ShowStandaloneAsync(viewID);
