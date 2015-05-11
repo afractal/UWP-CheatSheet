@@ -1,0 +1,3 @@
+Windows.ApplicationModel.Core.CoreApplication.CreateNewView
+Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync
+Windows.UI.ViewManagement.ApplicationViewSwitcher.TryStandaloneAsync
