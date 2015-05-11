@@ -35,6 +35,16 @@ if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.I
 // still in developer preview
 
 
+//--> Back for Universal Windows Apps
+
+// One event to rule them all
+// The back button is now avaible everywhere!
+// Title bar UI can be opted in to for Windowed mode
+// Back in tablet mode works just like the back button on Phone
+// Need to handle BackRequested for the page to page navigation and to dismiss temporary UI
+
+
+
 //--> Navigating Back using a button instead of the HardwareButtons BackPressed event
 
 // Application ca execute logic to navigate back to precending page
