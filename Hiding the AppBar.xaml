@@ -1,3 +1,4 @@
 AppBar not shown by a gesture-->Can still set Visibility = "Collapsed" to Hide when visible,
 AppBar is not transient on phone Equilvalent to IsOpen="true" at all times.
 Can display AppBAr minimized on Windows Phone--> Use <CommandBAr ClosedDisplayMode="Minimal".../>
+
