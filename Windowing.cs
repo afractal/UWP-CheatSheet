@@ -6,3 +6,7 @@
 Windows.ApplicationModel.Core.CoreApplication.CreateNewView
 Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync
 Windows.UI.ViewManagement.ApplicationViewSwitcher.TryStandaloneAsync
+
+// opt-in to the new activation policy
+
+ApplicationViewSwitcher.DisableSystemViewActivationPolicy();
