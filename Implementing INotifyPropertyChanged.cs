@@ -62,10 +62,7 @@ public class ItemViewModel : BindableBase
   public string Model
   {
     get { return model; }
-    set 
-    {
-      this.SetProperty(ref Name, value) ;
-    }
+    set { this.SetProperty(ref Name, value); }
   }
   
 // class ends here  
