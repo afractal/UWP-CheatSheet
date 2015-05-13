@@ -11,7 +11,7 @@ private asynv void ShowContentDialog()
 
     ContentDialogResult result = await dialog.ShowAsync();
     if(result == ContentDialogResult.Primary){ /*do some more Primary logic*/}  
-    else if(result == ContentDialogResult.Secondary){ /* else do Secondary logic}
+    else if(result == ContentDialogResult.Secondary){ /* else do Secondary logic*/}
 }
 
 void dialog_SecondaryButtonClick()
