@@ -1,4 +1,4 @@
-
+﻿
 // By default, Status Bar is visible and displays with a transparent background
 // The background color that displays is that of the containing Page
 // Can program the BackgroundColor and BackgroundOpacity
@@ -58,3 +58,10 @@ await statusBar.ProgressIndicator.ProgressValue = 0;
 // (or whatever page you are displaying):
 
 ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+
+
+//--> Progress Indicator in Status Bar
+StatusBar.GetForCurrentView().ShowAsync();
+var progInd = Status.GetForCurrentView().ProgressIndicator;
+progInd.Text = "Fetching...";
+progInd.ShowAsync();
