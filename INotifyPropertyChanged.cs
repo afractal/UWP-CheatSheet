@@ -12,38 +12,40 @@ public class ItemViewModel : INotifyPropertyChanged
     get { return _manufacturer;}  
     set {
       _manufacturer = value;
-      NotifyPropertyChanged("manufacturer");  }
+      OnPropertyChanged("manufacturer");  }
   }  
   public string model
   {
     get { return _model; }
     set {
       _model = value;
-      NotifyPropertyChanged("model");  }
+      OnPropertyChanged("model");  }
   }  
   public string color
   {
     get { return _color; }
     set {
       _color = value;
-      NotifyPropertyChanged("color");  }
+      OnPropertyChanged("color");  }
   }  
   public int year
   {
     get { return _year;  } 
     set {
       _year = value;
-      NotifyPropertyChanged("color");  }
+      OnPropertyChanged("color");
+      //or just OnPropertyChanged}
   }  
   // Property Change Logic
   public event PropertyChangedEventHandler PropertyChanged;  
-  private void NotifyPropertyChanged(string propertyName)
+  private void OnPropertyChanged([CallerMemberName]string propertyName = null)
   {      
-    if (PropertyChanged != null)       
-      {
-        PropertyChanged(this, new  PropertyChangedEventArgs(propertyName));  
-        // you can also use PropertyChanged?.(this, new PropertyChangedEventArgs);
-      }
+    var handler = PropertyChanged;  
+    // you can also use PropertyChanged?.(this, new PropertyChangedEventArgs);
+    if (handler != null)       
+    {
+      PropertyChanged(this, new  PropertyChangedEventArgs(propertyName));  
+    }
   }
   
 // class ends here  
@@ -62,7 +64,7 @@ public class ItemViewModel : BindableBase
   public string Model
   {
     get { return model; }
-    set { this.SetProperty(ref Name, value); }
+    set { SetProperty(ref model, value); }
   }
   
 // class ends here  
@@ -73,11 +75,11 @@ public abstract class BindableBase : INotifyPropertyChanged
 {
   public event PropertyChangedEventHandler PropertyChanged;
 
-  public void OnPropertyChanged([CallerMemberName]string propertyName = null)
+  public void OnPropertyChanged([CallerMemberName]string caller = null)
   {
     var handler = PropertyChanged;
     if (handler != null)
-      handler(this, new PropertyChangedEventArgs(propertyName) );
+      handler(this, new PropertyChangedEventArgs(caller) );
   }
 
   protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
