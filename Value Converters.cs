@@ -59,7 +59,7 @@ public sealed class TextToHtmlConverter : IValueConverter
 
 
 // Custom class implements the IValueConverter interface.
-// DateToStringConverter
+//--> DateToStringConverter
 public class DateToStringConverter : IValueConverter
 {
     // Define the Convert method to change a DateTime object to 
@@ -93,5 +93,26 @@ public class DateToStringConverter : IValueConverter
         object parameter, string language)
     {
         throw new NotImplementedException();
+    }
+}
+
+//--> Another DateConverter
+class DateConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        DateTime date = (DateTime)value;
+        return date.ToString("d");
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        string strValue = value as String;
+        DateTime resultDT;
+        if (DateTime.TryParse(strValue, out resultDT))
+        {
+            return resultDT;
+        }
+        throw new NotImplementedException("unable to convert object");
     }
 }
