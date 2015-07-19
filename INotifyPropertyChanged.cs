@@ -71,9 +71,13 @@ public class ItemViewModel : BindableBase
 }
 
 // creating an abstract class called BindableBase is a good way to introduce MVVM pattern
+[DataContract]
 public abstract class BindableBase : INotifyPropertyChanged
 {
-  public event PropertyChangedEventHandler PropertyChanged;
+  // A unique feature of anonymous methods is that you can omit the parameter declaration
+  // entirely - even if the delegate expects them. This can be useful in declaring events
+  // with a default empty handler.
+  public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
   public void OnPropertyChanged([CallerMemberName]string caller = null)
   {
