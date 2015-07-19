@@ -34,18 +34,16 @@ public class ItemViewModel : INotifyPropertyChanged
     set {
       _year = value;
       OnPropertyChanged("color");
-      //or just OnPropertyChanged}
+      //or just OnPropertyChanged()
   }  
   // Property Change Logic
   public event PropertyChangedEventHandler PropertyChanged;  
   private void OnPropertyChanged([CallerMemberName]string propertyName = null)
   {      
+    // you can also use PropertyChanged?.Invoke(this, new PropertyChangedEventArg(propertyName)));
     var handler = PropertyChanged;  
-    // you can also use PropertyChanged?.(this, new PropertyChangedEventArgs);
     if (handler != null)       
-    {
       PropertyChanged(this, new  PropertyChangedEventArgs(propertyName));  
-    }
   }
   
 // class ends here  
@@ -79,16 +77,19 @@ public abstract class BindableBase : INotifyPropertyChanged
   // with a default empty handler.
   public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-  public void OnPropertyChanged([CallerMemberName]string caller = null)
+  protected virtual void OnPropertyChanged([CallerMemberName]string caller = null)
   {
+    // you can also use PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
     var handler = PropertyChanged;
     if (handler != null)
       handler(this, new PropertyChangedEventArgs(caller) );
   }
 
-  protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+  protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
   {
-    if (object.Equals(storage, value)) return false;
+    // you use the Object.Equals because you dont know the Type of T(maybe no .Equals() method)
+    // if (EqualityComparer<T>.Default.Equals(storage, value)) return false;
+    if (Object.Equals(storage, value)) return false;
     storage = value;
     this.OnPropertyChanged(propertyName);
     return true;
