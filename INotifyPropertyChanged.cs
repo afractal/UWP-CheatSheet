@@ -89,6 +89,7 @@ public abstract class BindableBase : INotifyPropertyChanged
   {
     // you use the Object.Equals because you dont know the Type of T(maybe no .Equals() method)
     // if (EqualityComparer<T>.Default.Equals(storage, value)) return false;
+    // this avoids boxing so use this
     if (Object.Equals(storage, value)) return false;
     storage = value;
     this.OnPropertyChanged(propertyName);
