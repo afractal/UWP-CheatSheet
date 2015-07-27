@@ -65,3 +65,9 @@ StatusBar.GetForCurrentView().ShowAsync();
 var progInd = Status.GetForCurrentView().ProgressIndicator;
 progInd.Text = "Fetching...";
 progInd.ShowAsync();
+
+//--> Hide the status bar in MainPage ctor
+public MainPage()
+{
+    StatusBar.GetForCurrentView().HideAsync().AsTask().RunAsynchronously();
+}
