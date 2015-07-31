@@ -1,3 +1,6 @@
+//--> for windows 10 apps use the Popup intead of the MessageDialog 
+// also use more ContentDialog
+
 //--> Shfaqja e textit me ane te nje "MessageDialog"
 
 private async void Button_Click(object sender, RoutedEventArgs e)
