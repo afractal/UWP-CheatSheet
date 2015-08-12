@@ -2,14 +2,22 @@
 
 // Fire when item is realized 
 
-<ListView ItemTemplate="{StaticResource SampleDataTemplate}"ContainerContentChanging="IncrementalUpdateHandler">
+<ListView ItemTemplate="{StaticResource SampleDataTemplate}"
+    ContainerContentChanging="IncrementalUpdateHandler">
 
 // Items can be rendered in phases
-
-private void IncrementalUpdateHandler(ListViewBase sender,ContainerContentChangingEventArgs args)
+ // Phase Priorities
+        // 1. Simple Shapes(Placeholder visuals)
+        // 2. Key text (title)
+        // 3. Other text (subtitle)
+        // 4. Images
+        
+// performance tip 
+// do not use visibility but use Opacity
+private void IncrementalUpdateHandler(ListViewBase sender, ContainerContentChangingEventArgs args)
 {
-    args.Handled= true;
-    if(args.Phase!=0)
+    args.Handled = true;
+    if(args.Phase != 0)
          throw new Exception("we will always be in phase 0");
     else
       {
@@ -22,8 +30,8 @@ private void IncrementalUpdateHandler(ListViewBase sender,ContainerContentChangi
 
 private void ShowText(ListViewBase sender, ContainerContentEventArgs args)
 {
-    args.Handled=true;
-    if(args.Phase!=1)
+    args.Handled = true;
+    if(args.Phase != 1)
          throw new Exception("we should always be in phase 1");
     else
       {
