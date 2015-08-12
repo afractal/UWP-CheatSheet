@@ -17,27 +17,87 @@
 private void IncrementalUpdateHandler(ListViewBase sender, ContainerContentChangingEventArgs args)
 {
     args.Handled = true;
-    if(args.Phase != 0)
-         throw new Exception("we will always be in phase 0");
-    else
-      {
-         // show a placeholder shape
-         args.RegisterUpdateCallBack(ShowText);
-      }
+
+    if (args.Phase != 0)
+    {
+        throw new Exception("Not in phase 0.");
+    }
+
+    // First, show the items' placeholders.
+    var templateRoot = (StackPanel)args.ItemContainer.ContentTemplateRoot;
+    var titleTextBlock = (TextBlock)templateRoot.FindName("textTitle");
+    var pubDateTextBlock = (TextBlock)templateRoot.FindName("textPubDate");
+
+    // Make everything else invisible.
+    titleTextBlock.Opacity = 0;
+    pubDateTextBlock.Opacity = 0;
+
+    // Show the items' titles in the next phase.
+    args.RegisterUpdateCallback(ShowText);
 }
 
-// Later phases will be skipped if too much time is needed
-
-private void ShowText(ListViewBase sender, ContainerContentEventArgs args)
+private void ShowText(ListViewBase sender, ContainerContentChangingEventArgs args)
 {
-    args.Handled = true;
-    if(args.Phase != 1)
-         throw new Exception("we should always be in phase 1");
-    else
-      {
-         // show text from the template
-         args.RegisterUpdateCallback(ShowImage);
-      }
+    if (args.Phase != 1)
+    {
+        throw new Exception("Not in phase 1.");
+    }
+
+    // Next, show the items' titles. Keep everything else invisible.
+    var myItem = (FeedDataItem)args.Item;
+    SelectorItem itemContainer = (SelectorItem)args.ItemContainer;
+    var templateRoot = (StackPanel)itemContainer.ContentTemplateRoot;
+    var titleTextBlock = (TextBlock)templateRoot.FindName("textTitle");
+
+    titleTextBlock.Text = myItem.Title;
+    titleTextBlock.Opacity = 1;
+
+    // Show the items' subtitles in the next phase.
+    args.RegisterUpdateCallback(ShowPubDate);
+}
+
+private void ShowPubDate(ListViewBase sender, ContainerContentChangingEventArgs args)
+{
+    if (args.Phase != 2)
+    {
+        throw new Exception("Not in phase 2.");
+    }
+
+    // Next, show the items' subtitles. Keep everything else invisible.
+    var myItem = (FeedDataItem)args.Item;
+    SelectorItem itemContainer = (SelectorItem)args.ItemContainer;
+
+    var templateRoot = (StackPanel)itemContainer.ContentTemplateRoot;
+    var pudDateText = (TextBlock)templateRoot.FindName("textPubDate");
+
+    pudDateText.Text = myItem.PubDate.ToString();
+    pudDateText.Opacity = 1;
+
+    // Show the items' descriptions in the next phase.
+    args.RegisterUpdateCallback(ShowImage);
+}
+
+private void ShowImage(ListViewBase sender, ContainerContentChangingEventArgs args)
+{
+    if (args.Phase != 3)
+    {
+        throw new Exception("Not in phase 3.");
+    }
+
+    // Finally, show the items' descriptions. 
+    var myItem = (FeedDataItem)args.Item;
+    SelectorItem itemContainer = (SelectorItem)args.ItemContainer;
+
+    var templateRoot = (StackPanel)itemContainer.ContentTemplateRoot;
+    var picture = (Image)templateRoot.FindName("picture");
+
+    var bitImage = new BitmapImage();
+    bitImage.UriSource = myItem.ImageLink;
+
+    picture.Source = bitImage;
+    picture.Opacity = 1;
+
+    // Make the placeholder rectangle invisible.
 }
 .....
 // Repeat another phase if you want to
