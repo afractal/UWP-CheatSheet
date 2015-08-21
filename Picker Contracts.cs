@@ -19,47 +19,7 @@ private void myPickPhotoButton_ClickEventHandler(object sender, RoutedEventArgs 
   
   // in windows 10 this is deprecated use .PickSingleFileAsync();
 }
-// App suspended, may be terminated
-                 |
-App activated when file picked
 
-
-//--> Activation after File Picker
-
-// 1 of 2- App.cs
-
-protected override async void OnActivated(IActivatedEventArgs args)
-{
-  if(args is FileOpenPickerContinuationEventArgs)
-    {
-      Frame rootFrame= Windows.Current.Content as Frame;
-      
-      ... // Standard Frame initialization code ...
-      
-      if(!rootFrame.Navigate(typeof(ProfilePage)))
-        {
-          throw new Exeption("Failed to create target page");
-        }
-
-      var p= rootFrame.Content as ProfilePage;
-      p.FilePickerEvent= (FileOpenPickerContinuationEventArgs)args;
-
-      // Ensure the current windows is active
-      Window.Current.Activate();
-    }
-}
-
-
-// 2 of 2- Page where picker was initiated
-
-private FileOpenPickerContinuationEventArgs _filePickerEventArgs= null;
-public FileOpenPickerContinuationEventArgs FilePickerEvent
-{
-  get{ return _filePickerEventArgs; }
-  set{
-     _filePickerEventArgs= value;
-     ContinueFileOpenPicker(_filePickerEventArgs); }
-}
 
 public async void ContinueFileOpenPicker(FileOpenContinuationEventArgs)
 {
